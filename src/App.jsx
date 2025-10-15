@@ -218,8 +218,14 @@ function App() {
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
     a.href = url
-    const dateStr = new Date().toISOString().split('T')[0]
-    a.download = `my-links-${dateStr}.json`
+
+    // 한글 날짜 형식으로 파일명 생성
+    const now = new Date()
+    const month = now.getMonth() + 1
+    const day = now.getDate()
+    const dateStr = `${month}월${day}일`
+    a.download = `링크노트${dateStr}.json`
+
     a.click()
     URL.revokeObjectURL(url)
   }
